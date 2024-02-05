@@ -1,9 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
+#include <cstdlib> // For system() function
 using namespace std;
 
+// Class declaration for contact management
 class contact {
 private:
     string fname;
@@ -12,12 +13,12 @@ private:
     int hisaab;
 public:
     // Function declarations
-    void admin_menu();
-    void customer_menu();
-    void add_hisaab();
-    void search(string name);
-    void show_hisaab();
-    void delete_hisaab();
+    void admin_menu(); // Display admin menu
+    void customer_menu(); // Display customer menu
+    void add_hisaab(); // Add a new entry to hisaab
+    void search(string name); // Search for a hisaab entry by name
+    void show_hisaab(); // Display all hisaab entries
+    void delete_hisaab(); // Delete a hisaab entry
 };
 
 // Function to clear the screen
@@ -213,7 +214,6 @@ int main() {
         int choice2;
         int flag1 = 0;
         do {
-            system("cls");
             string Name;
             number.admin_menu();
             cout << "Enter the choice ";
