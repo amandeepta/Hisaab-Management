@@ -110,6 +110,7 @@ void contact::delete_hisaab() {
             cin >> ans;
             if (ans == 'Y' || ans == 'y') {
                 // Do nothing here, so line will not be written to temp.txt
+                cout << "The hisaab Deleted successfully" << endl;
             } else if (ans == 'N' || ans == 'n') {
                 temp << line << endl; // Write the line to temp.txt
             } else {
@@ -182,9 +183,10 @@ int main() {
 
         do {
             string Name;
+            number.admin_menu();
             cout << "Enter the choice ";
             cin >> choice2;
-            number.admin_menu();
+            
 
             switch (choice2) {
             case 1:
