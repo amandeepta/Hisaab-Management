@@ -202,6 +202,7 @@ int main() {
         int choice2;
         int flag1 = 0;
         do {
+            system("cls");
             string Name;
             number.admin_menu();
             cout << "Enter the choice ";
