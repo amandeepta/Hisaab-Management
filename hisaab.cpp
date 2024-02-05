@@ -11,19 +11,23 @@ private:
     string phone_no;
     int hisaab;
 public:
+    // Function declarations
     void admin_menu();
+    void customer_menu();
     void add_hisaab();
     void search(string name);
     void show_hisaab();
     void delete_hisaab();
 };
 
+// Function to display the admin menu
 void contact::admin_menu() {
     system("cls");
     system("Color 0A");
-    cout << "\n\n\t1. Add Hisaab\n\t2. Search Hisaab\n\t3. Show hisaab\n\t4. Edit Hisaab\n\t5. Delete Hisaab\n\t> ";
+    cout << "\n\n\t1. Add Hisaab\n\t2. Search Hisaab\n\t3. Show hisaab\n\t4. Delete Hisaab\n\t5. Exit\n\t> ";
 }
 
+// Function to check if the phone number is valid
 int checker(string phone_no) {
     if (phone_no.length() == 10) {
         cout << "\t Number is valid" << endl; // Add newline character here
@@ -34,6 +38,7 @@ int checker(string phone_no) {
     }
 }
 
+// Function to add a new entry to the hisaab
 void contact::add_hisaab() {
     ofstream file("contact.txt", ios::app);
     cout << "\n \t Enter the first Name : ";
@@ -46,7 +51,7 @@ void contact::add_hisaab() {
     cin >> hisaab;
 
     if (checker(phone_no) == 0) {
-        add_hisaab();
+        add_hisaab(); // Recursive call if phone number is invalid
     }
     if (file.is_open()) {
         file << fname << " " << lname << ":" << phone_no << " " << hisaab << "\n";
@@ -57,6 +62,7 @@ void contact::add_hisaab() {
     file.close(); // Close the file after using it
 }
 
+// Function to search for a hisaab entry by name
 void contact::search(string name) {
     ifstream file;
     file.open("contact.txt");
@@ -77,6 +83,18 @@ void contact::search(string name) {
     file.close(); // Close the file after using it
 }
 
+// Function to display the customer menu and search for pending hisaab
+void contact :: customer_menu() {
+    system("cls");
+    system("Color 0B");
+    string getname;
+    cout << "\t \t Enter your name to know your pending hisaab : ";
+    cin.ignore();
+    getline(cin,getname);
+    search(getname);
+} 
+
+// Function to display all hisaab entries
 void contact::show_hisaab() {
     ifstream file;
     file.open("contact.txt");
@@ -89,6 +107,7 @@ void contact::show_hisaab() {
     file.close(); // Close the file after using it
 }
 
+// Function to delete a hisaab entry
 void contact::delete_hisaab() {
     string name;
     cout << "Enter the name to delete the hisaab : ";
@@ -132,6 +151,7 @@ void contact::delete_hisaab() {
     if (flag == 0) cout << "Record not found " << endl;
 }
 
+// Main function
 int main() {
     system("cls");
     cout << "\n\t\t\t\t\t\tHISAAB MANAGEMENT SYSTEM";
@@ -162,7 +182,7 @@ int main() {
             }
 
         case 2:
-            cout << "done" << endl;
+            number.customer_menu();
             break;
 
         case 3:
@@ -180,7 +200,7 @@ int main() {
 
     if (flag == 1) {
         int choice2;
-
+        int flag1 = 0;
         do {
             string Name;
             number.admin_menu();
@@ -195,7 +215,8 @@ int main() {
 
             case 2:
                 cout << "Enter the Name to get the details : ";
-                cin >> Name;
+                cin.ignore();
+                getline(cin, Name);
                 number.search(Name);
                 break;
 
@@ -203,27 +224,29 @@ int main() {
                 number.show_hisaab();
                 break;
 
-            case 5:
+            case 4:
                 number.delete_hisaab();
                 break; 
+            
+            case 5 :
+                flag1 = 1;
+                break;
 
             default:
                 cout << "Enter a valid input" << endl;
             }
 
+            if (flag1 == 1) break;
             char ans;
             cout << "Do you want to continue Y/N : ";
             cin >> ans;
 
+            
             if (ans == 'Y') continue;
             if (ans == 'N') break;
             else cout << "Try again" << endl;
 
         } while (choice2 != 5);
-
-    }
-
-    if (flag == 2) {
 
     }
     return 0; // Add return 0; here
