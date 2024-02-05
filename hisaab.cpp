@@ -20,10 +20,20 @@ public:
     void delete_hisaab();
 };
 
+// Function to clear the screen
+void clearScreen() {
+    cout << "\033[2J\033[1;1H"; // ANSI escape code to clear screen
+}
+
+// Function to set text color
+void setTextColor(int color) {
+    cout << "\033[1;" << color << "m"; // ANSI escape code to set text color
+}
+
 // Function to display the admin menu
 void contact::admin_menu() {
-    system("cls");
-    system("Color 0A");
+    clearScreen();
+    setTextColor(10); // Set text color to green
     cout << "\n\n\t1. Add Hisaab\n\t2. Search Hisaab\n\t3. Show hisaab\n\t4. Delete Hisaab\n\t5. Exit\n\t> ";
 }
 
@@ -85,8 +95,8 @@ void contact::search(string name) {
 
 // Function to display the customer menu and search for pending hisaab
 void contact :: customer_menu() {
-    system("cls");
-    system("Color 0B");
+    clearScreen();
+    setTextColor(11); // Set text color to light cyan
     string getname;
     cout << "\t \t Enter your name to know your pending hisaab : ";
     cin.ignore();
@@ -153,7 +163,8 @@ void contact::delete_hisaab() {
 
 // Main function
 int main() {
-    system("cls");
+    clearScreen();
+    setTextColor(14); // Set text color to yellow
     cout << "\n\t\t\t\t\t\tHISAAB MANAGEMENT SYSTEM";
     int choice1;
     int flag = 0;
@@ -238,11 +249,11 @@ int main() {
             }
 
             if (flag1 == 1) break;
+            
             char ans;
             cout << "Do you want to continue Y/N : ";
             cin >> ans;
 
-            
             if (ans == 'Y') continue;
             if (ans == 'N') break;
             else cout << "Try again" << endl;
@@ -250,5 +261,5 @@ int main() {
         } while (choice2 != 5);
 
     }
-    return 0; // Add return 0; here
+    return 0; 
 }
